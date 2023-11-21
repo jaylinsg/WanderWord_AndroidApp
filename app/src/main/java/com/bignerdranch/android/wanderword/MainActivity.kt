@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnLogin.setOnClickListener {
+
             // Handle login button click
             val email = editTextEmail.text.toString()
             val password = editTextPassword.text.toString()
@@ -44,6 +45,17 @@ class MainActivity : AppCompatActivity() {
 
             // Example: Show a toast message
             Toast.makeText(this, "Logged in: $email", Toast.LENGTH_SHORT).show()
+            /*
+            ONCE YOU MAKE HOME ACTIVITY
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.activity_main)
+
+            // Assuming you have a button with the ID 'loginButton' in your layout
+            loginButton.setOnClickListener {
+                // Start the HomeActivity when the login button is clicked
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+             */
         }
     }
 }
