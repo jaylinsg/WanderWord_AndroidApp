@@ -1,5 +1,6 @@
 package com.bignerdranch.android.wanderword
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
@@ -45,17 +46,13 @@ class MainActivity : AppCompatActivity() {
 
             // Example: Show a toast message
             Toast.makeText(this, "Logged in: $email", Toast.LENGTH_SHORT).show()
-            /*
-            ONCE YOU MAKE HOME ACTIVITY
-            super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_main)
 
             // Assuming you have a button with the ID 'loginButton' in your layout
-            loginButton.setOnClickListener {
+            btnLogin.setOnClickListener {
                 // Start the HomeActivity when the login button is clicked
                 val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
-             */
+            }
         }
     }
 }
