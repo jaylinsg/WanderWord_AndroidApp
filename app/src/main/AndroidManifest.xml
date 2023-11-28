@@ -19,10 +19,6 @@
         android:theme="@style/Theme.AppCompat"
         tools:targetApi="31">
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="${GOOGLE_MAPS_API_KEY}" />
-
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -41,6 +37,24 @@
 
         <activity
             android:name=".HomeActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat">
+        </activity>
+
+        <activity
+            android:name=".FriendsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat">
+        </activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat">
+        </activity>
+
+        <activity
+            android:name=".CollectionActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat">
         </activity>
