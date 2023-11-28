@@ -47,12 +47,9 @@ class MainActivity : AppCompatActivity() {
             // Example: Show a toast message
             Toast.makeText(this, "Logged in: $email", Toast.LENGTH_SHORT).show()
 
-            // Assuming you have a button with the ID 'loginButton' in your layout
-            btnLogin.setOnClickListener {
-                // Start the HomeActivity when the login button is clicked
-                val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent)
-            }
+            // Start the HomeActivity when the login button is clicked
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
         }
     }
 }
