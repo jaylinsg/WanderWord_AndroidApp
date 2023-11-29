@@ -14,4 +14,11 @@
     <string name="collection">Collection</string>
     <string name="home">Home</string>
 
+    <!-- For SettingActivity -->
+    <string name="change_profile_picture">Change Profile Picture</string>
+    <string name="user_name">User Name</string>
+    <string name="change_password">Change Password</string>
+    <string name="other_settings">Other Settings</string>
+    <string name="profile_settings">Profile Settings</string>
+
 </resources>
