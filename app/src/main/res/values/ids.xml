@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="textViewProfile" type="id" />
+    <item name="imageViewProfile" type="id" />
+    <item name="locationNameTextView" type="id" />
+</resources>
