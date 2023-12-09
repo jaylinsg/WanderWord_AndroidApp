@@ -19,6 +19,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.Marker
+import kotlin.random.Random
 
 
 class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -79,10 +80,14 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
         // Retrieve information about the clicked marker
         val locationName = marker.title
 
-        // Open LocationDetailActivity to display location details
+        // Get the randomly selected word for the location
+        val selectedWord = getRandomWord(locationName)
+
+        // Open LocationDetailActivity to display location details / game
         val intent = Intent(this, LocationDetailActivity::class.java).apply {
             putExtra("LOCATION_NAME", locationName)
             putExtra("LOCATION_DETAILS", locationName?.let { getDetailsForLocation(it) })
+            putExtra("SELECTED_WORD", selectedWord)
             // TODO: Add other relevant data
         }
         startActivity(intent)
@@ -121,6 +126,15 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    // Map to associate locations with their word lists
+    private val locationWordMap = mapOf(
+        "Boston Tea Party (Ships & Museum)" to listOf("tea", "revolution", "ship"),
+        "Old North Church" to listOf("church", "history", "revolution"),
+        "The Paul Revere House" to listOf("revere", "history", "silversmith"),
+        "Boston Common" to listOf("park", "revolution", "history"),
+        "Boston Public Library" to listOf("library", "knowledge", "history")
+    )
+
     private fun addMarkers() {
         // Add markers to historic locations
         val bostonTeaParty = LatLng(42.35232, -71.05129) // Boston Tea Party (Museum)
@@ -131,68 +145,34 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val teaPartyMarker = googleMap.addMarker(
             MarkerOptions().position(bostonTeaParty).title("Boston Tea Party (Ships & Museum)")
+                .snippet(getRandomWord("Boston Tea Party (Ships & Museum)"))
         )
 
         val oldNorthChurchMarker = googleMap.addMarker(
             MarkerOptions().position(oldNorthChurch).title("Old North Church")
+                .snippet(getRandomWord("Old North Church"))
         )
 
         val paulRevereHouseMarker = googleMap.addMarker(
             MarkerOptions().position(paulRevereHouse).title("The Paul Revere House")
+                .snippet(getRandomWord("The Paul Revere House"))
         )
 
         val bostonCommonMarker = googleMap.addMarker(
             MarkerOptions().position(bostonCommon).title("Boston Common")
+                .snippet(getRandomWord("Boston Common"))
         )
 
         val bostonLibraryMarker = googleMap.addMarker(
             MarkerOptions().position(bostonPublicLibrary).title("Boston Public Library")
+                .snippet(getRandomWord("Boston Public Library"))
         )
-
-        // Set up info window click listener
-/*
-    googleMap.setOnInfoWindowClickListener { marker ->
-       // Handle InfoWindow click
-       val locationName = marker.title
-       val locationDetails: String = locationName?.let { getDetailsForLocation(it) } ?: "Details not available"
-       // Open LocationDetailActivity to display location details
-       val intent = Intent(this, LocationDetailActivity::class.java).apply {
-           putExtra("LOCATION_NAME", locationName)
-           putExtra("LOCATION_DETAILS", locationDetails)
-           //TODO: Add game availability
-       }
-       startActivity(intent)
-   }
-
-   // Set InfoWindow contents (description and game availability)
-
-   googleMap.setInfoWindowAdapter(object : GoogleMap.InfoWindodapter {
-       override fun getInfoContents(marker: Marker): View? {
-           // Inflate custom layout
-           val view = layoutInflater.inflate(R.layout.info_window_layout, null, false)
-
-           // Find views in the layout
-           val textLocationName: TextView = view.findViewById(R.id.textLocationName)
-           //val textLocationDescription: TextView = view.findViewById(R.id.textLocationDescription)
-           val textGameAvailability: TextView = view.findViewById(R.id.textGameAvailability)
-
-           // Set data to views
-           textLocationName.text = marker?.title ?:"Default Location Name" // TODO: Adjust location name
-           //textLocationDescription.text = getString(R.string.location_description_template, marker?.title) // Replace with actual description
-           textGameAvailability.text = "Game Available"  // Replace with actual game availability status
-
-
-           return view
-       }
-
-       override fun getInfoWindow(marker: Marker): View? {
-           // You can create a custom layout for InfoWindow here
-           return null
-       }
-   })
-
-    */
 }
+
+    private fun getRandomWord(locationName: String?): String {
+        val words = locationWordMap[locationName]
+        return words?.let { it[Random.nextInt(it.size)] } ?: ""
+    }
 
 private fun getDetailsForLocation(locationName: String): String {
    // Replace this logic with the actual details retrieval based on the location name

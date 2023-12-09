@@ -3,11 +3,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/userInput"
+
+    <TextView
+        android:id="@+id/hiddenWordTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_your_guess"/>
+        android:text=""
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/instructionsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/instructions"
+        android:layout_below="@id/hiddenWordTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/userInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_your_guess"
+        android:inputType="text"
+        android:imeOptions="actionDone"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/instructionsButton"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:autofillHints="text" />
 
     <Button
         android:id="@+id/checkButton"
@@ -15,6 +42,7 @@
         android:layout_height="wrap_content"
         android:text="@string/check_guess"
         android:layout_below="@id/userInput"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>
 
 </RelativeLayout>

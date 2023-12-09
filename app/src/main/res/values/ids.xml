@@ -3,4 +3,5 @@
     <item name="textViewProfile" type="id" />
     <item name="imageViewProfile" type="id" />
     <item name="locationNameTextView" type="id" />
+    <item name="submitButton" type="id" />
 </resources>
