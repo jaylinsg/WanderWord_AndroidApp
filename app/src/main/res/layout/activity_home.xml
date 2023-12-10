@@ -15,12 +15,12 @@
         android:layout_height="660dp" />
 
     <!-- Bottom navigation bar -->
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.WanderWord"
+        android:layout_gravity="bottom"
         app:menu="@menu/bottom_navigation_menu" />
 
     <FrameLayout

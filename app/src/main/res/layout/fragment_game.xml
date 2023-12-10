@@ -3,23 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/instructionsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/instructions"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
 
     <TextView
         android:id="@+id/hiddenWordTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:layout_below="@id/instructionsButton"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"/>
-
-    <Button
-        android:id="@+id/instructionsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/instructions"
-        android:layout_below="@id/hiddenWordTextView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>
 
@@ -31,7 +30,7 @@
         android:inputType="text"
         android:imeOptions="actionDone"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/instructionsButton"
+        android:layout_below="@id/hiddenWordTextView"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:autofillHints="text" />

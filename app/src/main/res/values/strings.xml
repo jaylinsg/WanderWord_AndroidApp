@@ -21,15 +21,14 @@
     <string name="other_settings">Other Settings</string>
     <string name="profile_settings">Profile Settings</string>
 
-    <!-- For info window -->
+    <!-- For LocationDetailActivity/GameFragment -->
     <string name="location_description_template">Description of %s</string>
     <string name="location_name_label">Location Name:</string>
     <string name="location_details_label">Details:</string>
     <string name="check">Check</string>
     <string name="enter_your_guess">Enter your guess</string>
     <string name="check_guess">Check Guess</string>
-    <string name="instructions">Instructions</string>
-    <string name="congratulations_message">Congratulations you won!</string>
-
+    <string name="instructions">Guess The Word To Win A Prize!\n(Click For Instructions) </string>
+    <string name="congratulations_message">Congratulations You Won!</string>
 
 </resources>

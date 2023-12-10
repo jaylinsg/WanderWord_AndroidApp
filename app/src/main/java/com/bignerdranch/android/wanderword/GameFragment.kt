@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import kotlin.random.Random
 
@@ -20,6 +21,7 @@ class GameFragment : Fragment() {
     private lateinit var wordsList: List<String>
     private lateinit var correctWord: String
     private var remainingTries: Int = 10
+    private val guessedWordsList = mutableListOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,8 +67,12 @@ class GameFragment : Fragment() {
             // User won, show congratulations message
             showCongratulationsMessage()
         } else {
+            // Add the guessed word to the list
+            guessedWordsList.add(userInputText)
+
             // Update the hidden word display based on the user's input
-            updateHiddenWordDisplay(userInputText)
+            updateHiddenWordDisplay()
+
             // Decrease the remaining tries
             remainingTries--
             showToast("Incorrect! Tries remaining: $remainingTries")
@@ -77,6 +83,7 @@ class GameFragment : Fragment() {
                 // Optionally, reset the game for a new word
                 generateRandomWord()
                 remainingTries = 10
+                guessedWordsList.clear()
                 updateHiddenWordDisplay()
             }
         }
@@ -96,33 +103,79 @@ class GameFragment : Fragment() {
             .commit()
     }
 
-    private fun updateHiddenWordDisplay(userInputText: String? = null) {
-        // Update the hidden word display based on the user's input
-        val updatedHiddenWord = StringBuilder()
+    private fun updateHiddenWordDisplay() {
+        // Update the hidden word display based on the user's input and guessed words list
+        val displayText = StringBuilder()
 
+        // Track discovered letters across all guesses
+        val discoveredLetters = mutableSetOf<Char>()
+
+        // Display initial hidden word before any guesses
         for (i in correctWord.indices) {
             val currentChar = correctWord[i]
-            val userInputChar = userInputText?.getOrNull(i)
-
-            if (userInputChar == null) {
-                // User hasn't guessed this position yet
-                updatedHiddenWord.append("_ ")
-            } else if (userInputChar.equals(currentChar, ignoreCase = true)) {
-                // User guessed the correct letter
-                updatedHiddenWord.append(" $currentChar ")
+            if (currentChar.isLetter()) {
+                displayText.append("□ ")
             } else {
-                // User guessed a letter, but it's in the wrong place
-                updatedHiddenWord.append("□ ")
+                displayText.append("$currentChar ")
             }
         }
+        displayText.append("\n")
 
-        hiddenWordTextView.text = updatedHiddenWord.toString()
+        // Display each guessed word w/ correct letters filled in
+        for (guessedWord in guessedWordsList) {
+            for (i in correctWord.indices) {
+                val currentChar = correctWord[i]
+                val guessedChar = guessedWord.getOrNull(i)
+
+                if (guessedChar != null && guessedChar.equals(currentChar, ignoreCase = true)) {
+                    // User guessed the correct letter, update the hidden word
+                    displayText.append(" $currentChar ")
+                    discoveredLetters.add(currentChar.lowercaseChar())
+                } else if (currentChar.isLetter() && discoveredLetters.contains(currentChar.lowercaseChar())) {
+                    // It's a discovered letter -> show it
+                    displayText.append(" $currentChar ")
+                } else if (currentChar.isLetter()) {
+                    // It's a letter, but not guessed correctly, show placeholder
+                    displayText.append("□ ")
+                } else {
+                    // It's not a letter (e.g., space or punctuation), show as is
+                    displayText.append("$currentChar ")
+                }
+            }
+            displayText.append("\n")
+        }
+        hiddenWordTextView.text = displayText.toString()
     }
 
     private fun showInstructionsPopup() {
-        // Implement the logic to show instructions (e.g., using AlertDialog)
-        // You can show a dialog with the game rules and how to play
+        val instructions = """
+        Welcome to the WanderWord game! This is your chance to grow your collection. Here are the instructions:
+
+        1. Uh oh! A hidden word!
+        2. You have 10 chances to guess the word.
+        3. Click "Check Guess" to submit a guess.
+        4. Any letters you guess correctly are shown (when in the correct place).
+        5. Guess the word correctly to earn a collection prize!
+        6. Lose the game after 10 incorrect guesses.
+        7. If you lose, come back tomorrow and try again!
+        7. HINT: The location details may help you guess the word. Good luck and have fun!
+    """.trimIndent()
+
+        // Create an AlertDialog
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        alertDialogBuilder.setTitle("WanderWord Instructions")
+        alertDialogBuilder.setMessage(instructions)
+
+        // Set a positive button and its click listener
+        alertDialogBuilder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        // Show the AlertDialog
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
     }
+
 
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
