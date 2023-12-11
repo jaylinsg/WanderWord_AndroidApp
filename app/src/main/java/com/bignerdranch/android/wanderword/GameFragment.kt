@@ -93,6 +93,7 @@ class GameFragment : Fragment() {
     }
 
     // TODO: IMPLEMENT A FAILURE MESSAGE AND FRAGMENT
+    //private fun showFailureMessage() {
     private fun showCongratulationsMessage() {
         // Replace the fragment with a CongratulationsFragment
         val congratulationsFragment = CongratulationsFragment()

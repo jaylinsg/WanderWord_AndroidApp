@@ -41,7 +41,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/user_name"
         android:inputType="text"
-        android:layout_marginBottom="48dp"/>
+        android:layout_marginBottom="48dp"
+        android:padding="8dp"/>
 
     <!-- Email -->
     <EditText
@@ -79,6 +80,7 @@
         android:layout_height="wrap_content"
         android:theme="@style/Theme.WanderWord"
         android:layout_gravity="bottom"
+        android:layout_marginTop="175dp"
         app:menu="@menu/bottom_navigation_menu" />
 
 </LinearLayout>
