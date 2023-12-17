@@ -10,44 +10,101 @@
     android:background="@color/purple_700"
     tools:context=".MainActivity">
 
+    <!-- App Logo -->
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/wanderword_logo"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="64dp"/>
+
+    <!-- Email EditText for Registration -->
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:visibility="gone"
         android:autofillHints="emailAddress"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:layout_marginTop="16dp"/>
 
+    <!-- Confirm Email EditText for Registration -->
+    <EditText
+        android:id="@+id/editTextConfirmEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:autofillHints="emailAddress"
+        android:hint="@string/confirm_email"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Password EditText for Registration/Login -->
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:visibility="gone"
         android:autofillHints="password"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:layout_marginTop="16dp"/>
 
+    <!-- Confirm Password EditText for Registration -->
+    <EditText
+        android:id="@+id/editTextConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:autofillHints="password"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- 2nd Login Button -->
+    <Button
+        android:id="@+id/btnLogin2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="@string/login"
+        android:layout_marginTop="8dp"
+        android:onClick="onLoginClick"/>
+
+    <!-- 2nd Register Button -->
+    <Button
+        android:id="@+id/btnRegister2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="@string/register"
+        android:layout_marginTop="16dp"
+        android:onClick="onRegisterClick"/>
+
+    <!-- Begin Register Button -->
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/register"
+        android:text="@string/new_user"
         android:layout_marginTop="16dp"/>
 
+    <!-- Begin Login Button -->
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login"
+        android:text="@string/existing_user"
         android:layout_marginTop="8dp"/>
 
 </LinearLayout>
-
-
 
 
 
