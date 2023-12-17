@@ -13,17 +13,17 @@
     <string name="login">Login</string>
 
     <!-- For Bottom Nav in HomeActivity -->
-    <string name="settings">Settings</string>
-    <string name="friends">Friends</string>
-    <string name="collection">Collection</string>
-    <string name="home">Home</string>
+    <string name="settings"></string>
+    <string name="friends"></string>
+    <string name="collection"></string>
+    <string name="home"></string>
 
     <!-- For SettingActivity -->
     <string name="change_profile_picture">Change Profile Picture</string>
     <string name="user_name">User Name</string>
     <string name="change_password">Change Password</string>
     <string name="other_settings">Other Settings</string>
-    <string name="profile_settings">Profile Settings</string>
+    <string name="profile_settings">Wanderer Settings</string>
 
     <!-- For LocationDetailActivity/GameFragment -->
     <string name="location_description_template">Description of %s</string>
@@ -32,7 +32,7 @@
     <string name="check">Check</string>
     <string name="enter_your_guess">Enter your guess</string>
     <string name="check_guess">Check Guess</string>
-    <string name="instructions">Guess The Word To Win A Prize!\n(Click For Instructions) </string>
+    <string name="instructions">Guess The Word To Win A Wander Gem!\n(Click For Instructions) </string>
     <string name="congratulations_message">Congratulations You Won!</string>
 
 </resources>

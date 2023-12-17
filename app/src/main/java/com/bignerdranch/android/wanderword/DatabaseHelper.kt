@@ -14,14 +14,12 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
         const val TABLE_USERS = "users"
         const val COLUMN_ID = "id"
-        const val COLUMN_USERNAME = "username"
         const val COLUMN_EMAIL = "email"
         const val COLUMN_PASSWORD = "password"
 
         // SQL query to create the Users table
         const val CREATE_USERS_TABLE = "CREATE TABLE $TABLE_USERS (" +
                 "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "$COLUMN_USERNAME TEXT," +
                 "$COLUMN_EMAIL TEXT," +
                 "$COLUMN_PASSWORD TEXT)"
     }
@@ -36,15 +34,19 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         // Handle upgrades, e.g., alter table structure or migrate data
     }
 
-    fun insertUser(username: String, email: String, password: String) {
+    fun insertUser(email: String, password: String): Long {
         val db = writableDatabase
         val values = ContentValues().apply {
-            put(COLUMN_USERNAME, username)
             put(COLUMN_EMAIL, email)
             put(COLUMN_PASSWORD, password)
         }
-        db.insert(TABLE_USERS, null, values)
+
+        // Insert the user into the database and get the generated ID
+        val userId = db.insert(TABLE_USERS, null, values)
+
         db.close()
+
+        return userId
     }
 
     @SuppressLint("Range")
@@ -62,7 +64,6 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         val user = if (cursor != null && cursor.moveToFirst()) {
             User(
                 cursor.getLong(cursor.getColumnIndex(COLUMN_ID)),
-                cursor.getString(cursor.getColumnIndex(COLUMN_USERNAME)),
                 cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)),
                 cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD))
             )
@@ -73,4 +74,33 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.close()
         return user
     }
+
+    @SuppressLint("Range")
+    fun getUserById(userId: Long): User? {
+        val db = readableDatabase
+        val cursor = db.query(
+            TABLE_USERS,
+            null,
+            "$COLUMN_ID = ?",
+            arrayOf(userId.toString()),
+            null,
+            null,
+            null
+        )
+
+        val user = if (cursor != null && cursor.moveToFirst()) {
+            User(
+                cursor.getLong(cursor.getColumnIndex(COLUMN_ID)),
+                cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)),
+                cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD))
+            )
+        } else {
+            null
+        }
+
+        cursor?.close()
+        db.close()
+        return user
+    }
+
 }
