@@ -21,9 +21,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var editTextPassword: EditText
     private lateinit var editTextConfirmPassword: EditText
 
+    // Initiate database
+    private val databaseHelper = DatabaseHelper(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         // Initialize views
         logoImageView = findViewById(R.id.logoImageView)
@@ -48,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // User chooses register option
     private fun showRegistrationUI() {
         // Remove Logo
         logoImageView.visibility = View.GONE
@@ -65,6 +70,7 @@ class MainActivity : AppCompatActivity() {
         editTextConfirmPassword.visibility = View.VISIBLE
     }
 
+    // User chooses login option
     private fun showLoginUI() {
         // Remove Logo
         logoImageView.visibility = View.GONE
@@ -84,6 +90,7 @@ class MainActivity : AppCompatActivity() {
         editTextConfirmPassword.visibility = View.GONE
     }
 
+    // User attempts to register
     fun onRegisterClick(view: View) {
         val email = editTextEmail.text.toString()
         val confirmEmail = editTextConfirmEmail.text.toString()
@@ -92,31 +99,57 @@ class MainActivity : AppCompatActivity() {
 
         // Perform registration logic
         if (validateRegistrationInputs(email, confirmEmail, password, confirmPassword)) {
-            // Registration is valid, perform registration actions
-            Toast.makeText(this, "Registered: $email", Toast.LENGTH_SHORT).show()
-            // Add your registration logic here
+            // Check if the user already exists in the database
+            val existingUser = databaseHelper.getUserByEmail(email)
+
+            if (existingUser == null) {
+                // User does not exist, proceed with registration
+                databaseHelper.insertUser(email, password)
+
+                // Registration is valid, perform registration actions
+                Toast.makeText(this, "Registered: $email", Toast.LENGTH_SHORT).show()
+                // Add your registration logic here
+
+                // You might want to navigate to the login UI after successful registration
+                showLoginUI()
+            } else {
+                // User already exists
+                Toast.makeText(this, "User with this email already exists", Toast.LENGTH_SHORT).show()
+            }
         } else {
             // Registration is not valid, show an error message or handle accordingly
             Toast.makeText(this, "Invalid registration input", Toast.LENGTH_SHORT).show()
         }
     }
 
+
+    // User attempts to login
     fun onLoginClick(view: View) {
         val email = editTextEmail.text.toString()
         val password = editTextPassword.text.toString()
 
         // Perform login logic
         if (validateLoginInputs(email, password)) {
-            // Login is valid, perform login actions
-            Toast.makeText(this, "Logged in: $email", Toast.LENGTH_SHORT).show()
-            // Start the HomeActivity when the login is successful
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+            // Check if the user exists in the database
+            val user = databaseHelper.getUserByEmail(email)
+
+            if (user != null && user.password == password) {
+                // Login is successful, perform login actions
+                Toast.makeText(this, "Logged in: $email", Toast.LENGTH_SHORT).show()
+
+                // Start the HomeActivity when the login is successful
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+            } else {
+                // User does not exist or password is incorrect
+                Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show()
+            }
         } else {
             // Login is not valid, show an error message or handle accordingly
             Toast.makeText(this, "Invalid login input", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     private fun validateRegistrationInputs(
         email: String,
