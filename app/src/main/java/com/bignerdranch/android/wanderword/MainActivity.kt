@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnLogin: Button
     private lateinit var btnRegister2: Button
     private lateinit var btnLogin2: Button
+    private lateinit var editTextUsername: EditText
     private lateinit var editTextEmail: EditText
     private lateinit var editTextConfirmEmail: EditText
     private lateinit var editTextPassword: EditText
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         btnLogin = findViewById(R.id.btnLogin)
         btnRegister2 = findViewById(R.id.btnRegister2)
         btnLogin2 = findViewById(R.id.btnLogin2)
+        editTextUsername = findViewById(R.id.editTextUsername)
         editTextEmail = findViewById(R.id.editTextEmail)
         editTextConfirmEmail = findViewById(R.id.editTextConfirmEmail)
         editTextPassword = findViewById(R.id.editTextPassword)
@@ -64,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         btnLogin2.visibility = View.GONE
 
         // Show registration UI elements
+        editTextUsername.visibility = View.VISIBLE
         editTextEmail.visibility = View.VISIBLE
         editTextConfirmEmail.visibility = View.VISIBLE
         editTextPassword.visibility = View.VISIBLE
@@ -86,28 +89,30 @@ class MainActivity : AppCompatActivity() {
         editTextPassword.visibility = View.VISIBLE
 
         // Hide registration UI elements
+        editTextUsername.visibility = View.GONE
         editTextConfirmEmail.visibility = View.GONE
         editTextConfirmPassword.visibility = View.GONE
     }
 
     // User attempts to register
     fun onRegisterClick(view: View) {
+        val username = editTextUsername.text.toString()
         val email = editTextEmail.text.toString()
         val confirmEmail = editTextConfirmEmail.text.toString()
         val password = editTextPassword.text.toString()
         val confirmPassword = editTextConfirmPassword.text.toString()
 
         // Perform registration logic
-        if (validateRegistrationInputs(email, confirmEmail, password, confirmPassword)) {
+        if (validateRegistrationInputs(username, email, confirmEmail, password, confirmPassword)) {
             // Check if the user already exists in the database
             val existingUser = databaseHelper.getUserByEmail(email)
 
             if (existingUser == null) {
                 // User does not exist, proceed with registration
-                databaseHelper.insertUser(email, password)
+                databaseHelper.insertUser(username, email, password)
 
                 // Registration is valid, perform registration actions
-                Toast.makeText(this, "Registered: $email", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Registered: $username", Toast.LENGTH_SHORT).show()
                 // Add your registration logic here
 
                 // You might want to navigate to the login UI after successful registration
@@ -125,6 +130,7 @@ class MainActivity : AppCompatActivity() {
 
     // User attempts to login
     fun onLoginClick(view: View) {
+
         val email = editTextEmail.text.toString()
         val password = editTextPassword.text.toString()
 
@@ -152,13 +158,14 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun validateRegistrationInputs(
+        username: String,
         email: String,
         confirmEmail: String,
         password: String,
         confirmPassword: String
     ): Boolean {
         // Add your registration input validation logic here
-        return email.isNotEmpty() && confirmEmail.isNotEmpty() &&
+        return username.isNotEmpty() && email.isNotEmpty() && confirmEmail.isNotEmpty() &&
                 password.isNotEmpty() && confirmPassword.isNotEmpty() &&
                 email == confirmEmail && password == confirmPassword
     }

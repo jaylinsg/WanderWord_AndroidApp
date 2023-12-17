@@ -14,12 +14,14 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
         const val TABLE_USERS = "users"
         const val COLUMN_ID = "id"
+        const val COLUMN_USERNAME = "username"
         const val COLUMN_EMAIL = "email"
         const val COLUMN_PASSWORD = "password"
 
         // SQL query to create the Users table
         const val CREATE_USERS_TABLE = "CREATE TABLE $TABLE_USERS (" +
                 "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "$COLUMN_USERNAME TEXT," +
                 "$COLUMN_EMAIL TEXT," +
                 "$COLUMN_PASSWORD TEXT)"
     }
@@ -34,9 +36,10 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         // Handle upgrades, e.g., alter table structure or migrate data
     }
 
-    fun insertUser(email: String, password: String) {
+    fun insertUser(username: String, email: String, password: String) {
         val db = writableDatabase
         val values = ContentValues().apply {
+            put(COLUMN_USERNAME, username)
             put(COLUMN_EMAIL, email)
             put(COLUMN_PASSWORD, password)
         }
@@ -59,6 +62,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         val user = if (cursor != null && cursor.moveToFirst()) {
             User(
                 cursor.getLong(cursor.getColumnIndex(COLUMN_ID)),
+                cursor.getString(cursor.getColumnIndex(COLUMN_USERNAME)),
                 cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)),
                 cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD))
             )

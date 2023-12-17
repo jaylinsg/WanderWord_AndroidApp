@@ -2,7 +2,7 @@
     <string name="app_name">WanderWord</string>
 
     <!-- For MainActivity/Login -->
-
+    <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="email">Email</string>

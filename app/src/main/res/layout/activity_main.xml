@@ -20,7 +20,19 @@
         android:layout_marginTop="64dp"
         android:layout_marginBottom="64dp"/>
 
-    <!-- Email EditText for Registration -->
+    <!-- Username EditText for Registration/Login -->
+    <EditText
+        android:id="@+id/editTextUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:autofillHints="username"
+        android:hint="@string/username"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Email EditText for Registration/Login -->
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
