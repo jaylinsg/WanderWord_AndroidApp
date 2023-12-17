@@ -24,7 +24,7 @@ class SettingsActivity : AppCompatActivity() {
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.action_home -> {
-                    // Handle Settings button click
+                    // Handle Home button click
                     startActivity(Intent(this, HomeActivity::class.java))
                     true
                 }
