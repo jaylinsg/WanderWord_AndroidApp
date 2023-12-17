@@ -10,18 +10,25 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     // Database schema constants
     companion object {
         const val DATABASE_NAME = "wanderword_database.db"
-        const val DATABASE_VERSION = 1
+        const val DATABASE_VERSION = 2
 
         const val TABLE_USERS = "users"
         const val COLUMN_ID = "id"
         const val COLUMN_EMAIL = "email"
         const val COLUMN_PASSWORD = "password"
+        const val COLUMN_USERNAME = "username"
+        const val COLUMN_COLLECTED_ITEMS = "collected_items"
+        const val COLUMN_FRIENDS = "friends"
+
 
         // SQL query to create the Users table
         const val CREATE_USERS_TABLE = "CREATE TABLE $TABLE_USERS (" +
                 "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "$COLUMN_EMAIL TEXT," +
-                "$COLUMN_PASSWORD TEXT)"
+                "$COLUMN_PASSWORD TEXT," +
+                "$COLUMN_USERNAME TEXT," +
+                "$COLUMN_COLLECTED_ITEMS TEXT," +
+                "$COLUMN_FRIENDS TEXT)"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -34,11 +41,14 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         // Handle upgrades, e.g., alter table structure or migrate data
     }
 
-    fun insertUser(email: String, password: String): Long {
+    fun insertUser(email: String, password: String, username: String, collectedItems: List<String>, friends: List<String>): Long {
         val db = writableDatabase
         val values = ContentValues().apply {
             put(COLUMN_EMAIL, email)
             put(COLUMN_PASSWORD, password)
+            put(COLUMN_USERNAME, username)
+            put(COLUMN_COLLECTED_ITEMS, collectedItems.joinToString(","))
+            put(COLUMN_FRIENDS, friends.joinToString(","))
         }
 
         // Insert the user into the database and get the generated ID
@@ -65,11 +75,15 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             User(
                 cursor.getLong(cursor.getColumnIndex(COLUMN_ID)),
                 cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)),
-                cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD))
+                cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD)),
+                parseStringToList(cursor.getString(cursor.getColumnIndex(COLUMN_COLLECTED_ITEMS))),
+                parseStringToList(cursor.getString(cursor.getColumnIndex(COLUMN_FRIENDS))),
+                cursor.getString(cursor.getColumnIndex(COLUMN_USERNAME))
             )
         } else {
             null
         }
+
         cursor?.close()
         db.close()
         return user
@@ -92,7 +106,10 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             User(
                 cursor.getLong(cursor.getColumnIndex(COLUMN_ID)),
                 cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)),
-                cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD))
+                cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD)),
+                parseStringToList(cursor.getString(cursor.getColumnIndex(COLUMN_COLLECTED_ITEMS))),
+                parseStringToList(cursor.getString(cursor.getColumnIndex(COLUMN_FRIENDS))),
+                cursor.getString(cursor.getColumnIndex(COLUMN_USERNAME))
             )
         } else {
             null
@@ -101,6 +118,10 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         cursor?.close()
         db.close()
         return user
+    }
+
+    private fun parseStringToList(input: String): List<String> {
+        return input.split(",").map { it.trim() }
     }
 
 }

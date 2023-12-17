@@ -129,11 +129,11 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
 
     // Map to associate locations with their word lists
     private val locationWordMap = mapOf(
-        "Boston Tea Party (Ships & Museum)" to listOf("tea", "revolution", "ship"),
-        "Old North Church" to listOf("church", "history", "revolution"),
-        "The Paul Revere House" to listOf("revere", "history", "silversmith"),
-        "Boston Common" to listOf("park", "revolution", "history"),
-        "Boston Public Library" to listOf("library", "knowledge", "history")
+        "Boston Tea Party (Ships & Museum)" to listOf("chai", "museum", "ship"),
+        "Old North Church" to listOf("church", "north", "christ"),
+        "The Paul Revere House" to listOf("revere", "patriot", "war"),
+        "Boston Common" to listOf("park", "pasture", "common"),
+        "Boston Public Library" to listOf("library", "knowledge", "books")
     )
 
     private fun addMarkers() {
