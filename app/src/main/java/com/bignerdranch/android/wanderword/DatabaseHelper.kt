@@ -9,8 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     // Database schema constants
     companion object {
-        const val DATABASE_NAME = "wanderword_database.db"
-        const val DATABASE_VERSION = 2
+        const val DATABASE_NAME = "wanderword_database_full.db"
+        const val DATABASE_VERSION = 1
 
         const val TABLE_USERS = "users"
         const val COLUMN_ID = "id"
@@ -41,7 +41,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         // Handle upgrades, e.g., alter table structure or migrate data
     }
 
-    fun insertUser(email: String, password: String, username: String, collectedItems: List<String>, friends: List<String>): Long {
+    fun insertUser(email: String, password: String, username: String = "", collectedItems: List<String> = emptyList(), friends: List<String> = emptyList()): Long {
         val db = writableDatabase
         val values = ContentValues().apply {
             put(COLUMN_EMAIL, email)
