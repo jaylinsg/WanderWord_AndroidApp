@@ -33,14 +33,14 @@
             android:id="@+id/gameFragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/locationDetailsTextView"
+            android:layout_below="@id/locationNameTextView"
             android:layout_marginTop="16dp"/>
 
         <TextView
             android:id="@+id/locationDetailsLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/locationNameTextView"
+            android:layout_below="@id/gameFragmentContainer"
             android:text="@string/location_details_label"
             android:textStyle="bold"
             android:textSize="18sp"

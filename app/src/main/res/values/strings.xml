@@ -32,11 +32,12 @@
     <string name="check">Check</string>
     <string name="enter_your_guess">Enter your guess</string>
     <string name="check_guess">Check Guess</string>
-    <string name="instructions">Guess The Word To Win A Wander Gem!\n(Click For Instructions) </string>
+    <string name="instructions">WanderGem Word Game!\n(Click For Instructions) </string>
     <string name="congratulations_message">Congratulations You Won!</string>
 
     <!-- For Collection -->
     <string name="collected_rewards">Collected WanderGems</string>
     <string name="not_collected_rewards">Locked WanderGems</string>
+    <string name="wandergem_description">"A new WanderGem has been added to your collection! "</string>
 
 </resources>

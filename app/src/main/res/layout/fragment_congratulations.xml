@@ -1,8 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="@string/congratulations_message"
-    android:textSize="18sp"
-    android:gravity="center"/>
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <!-- TextView for the congratulations message -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/congratulations_message"
+        android:textSize="36sp"
+        android:gravity="center"/>
+
+    <!-- ImageView for the image -->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/wandergem"
+        android:layout_gravity="center"
+        android:contentDescription="@string/wandergem_description"/>
+
+    <!-- TextView for the congratulations message -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wandergem_description"
+        android:textSize="18sp"
+        android:gravity="center"/>
+
+</LinearLayout>
