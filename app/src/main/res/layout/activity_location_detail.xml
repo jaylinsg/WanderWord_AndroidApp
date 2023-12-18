@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/purple_700">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +17,8 @@
             android:layout_height="wrap_content"
             android:text="@string/location_name_label"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="26sp"
+            android:textColor="@color/orange"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -24,8 +26,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/locationNameLabel"
+            android:layout_gravity="center"
             android:text=""
-            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textSize="36sp"
+            android:textColor="@color/purple_200"
             android:layout_marginBottom="16dp"/>
 
         <!-- Container for the GameFragment -->
@@ -43,8 +48,9 @@
             android:layout_below="@id/gameFragmentContainer"
             android:text="@string/location_details_label"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="26sp"
             android:layout_marginTop="16dp"
+            android:textColor="@color/orange"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -54,6 +60,7 @@
             android:layout_below="@id/locationDetailsLabel"
             android:text=""
             android:textSize="16sp"
+            android:textColor="@color/orange"
             android:layout_marginBottom="16dp"/>
 
     </RelativeLayout>

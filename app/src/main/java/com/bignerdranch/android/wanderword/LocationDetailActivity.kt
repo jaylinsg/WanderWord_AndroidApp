@@ -8,7 +8,8 @@ import androidx.fragment.app.FragmentTransaction
 
 class LocationDetailActivity : AppCompatActivity() {
 
-
+    private var userId: Long = -1
+    private var locationName: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +23,7 @@ class LocationDetailActivity : AppCompatActivity() {
         // Retrieve data from Intent
         val locationName = intent.getStringExtra("LOCATION_NAME")
         val locationDetails = intent.getStringExtra("LOCATION_DETAILS")
-        // TODO: Retrieve other data if needed
+        userId = intent.getLongExtra("userId", -1)
 
         // Update UI elements with data
         val locationNameTextView: TextView = findViewById(R.id.locationNameTextView)
@@ -41,7 +42,7 @@ class LocationDetailActivity : AppCompatActivity() {
             val fragmentManager: FragmentManager = supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
 
-            val gameFragment = GameFragment()
+            val gameFragment = GameFragment.newInstance(userId, locationName)
 
             // Pass the selected word to the GameFragment
             intent.getStringExtra("SELECTED_WORD")?.let {

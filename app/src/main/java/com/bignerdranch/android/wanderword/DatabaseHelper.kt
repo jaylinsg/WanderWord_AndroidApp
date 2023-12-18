@@ -120,6 +120,20 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return user
     }
 
+    // Function to add collected WanderGems to list of collected items
+    fun collectWandergem(userId: Long, wandergem: String) {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(COLUMN_COLLECTED_ITEMS, wandergem)
+
+        db.update(
+            TABLE_USERS,
+            contentValues,
+            "$COLUMN_ID = ?",
+            arrayOf(userId.toString())
+        )
+    }
+
     private fun parseStringToList(input: String): List<String> {
         return input.split(",").map { it.trim() }
     }

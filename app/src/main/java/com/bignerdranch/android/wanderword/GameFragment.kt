@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment
 import kotlin.random.Random
 
 class GameFragment : Fragment() {
+    private var userId: Long = -1
+    private var locationName: String = ""
 
     private lateinit var userInput: EditText
     private lateinit var checkButton: Button
@@ -32,6 +34,10 @@ class GameFragment : Fragment() {
         checkButton = view.findViewById(R.id.checkButton)
         hiddenWordTextView = view.findViewById(R.id.hiddenWordTextView)
         instructionsButton = view.findViewById(R.id.instructionsButton)
+
+        //Retrieve userId
+        userId = arguments?.getLong("userId", -1) ?: -1
+        locationName = arguments?.getString("locationName", "") ?: ""
 
         // Retrieve the selected word from arguments
         arguments?.getString("SELECTED_WORD")?.let {
@@ -180,5 +186,16 @@ class GameFragment : Fragment() {
 
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    companion object {
+        fun newInstance(userId: Long, locationName: String): GameFragment {
+            val fragment = GameFragment()
+            val args = Bundle()
+            args.putLong("userId", userId)
+            args.putString("locationName", locationName)
+            fragment.arguments = args
+            return fragment
+        }
     }
 }

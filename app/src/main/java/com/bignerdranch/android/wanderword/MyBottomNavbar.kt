@@ -52,7 +52,7 @@ class MyBottomNavbar @JvmOverloads constructor(
                 if (tab.id == tabId)
                     ContextCompat.getColor(context, R.color.orange)
                 else
-                    ContextCompat.getColor(context, android.R.color.transparent)
+                    ContextCompat.getColor(context, R.color.purple_700)
             )
         }
         selectedTabId = tabId

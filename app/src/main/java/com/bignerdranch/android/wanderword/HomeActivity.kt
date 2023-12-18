@@ -27,6 +27,10 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var googleMap: GoogleMap
     private lateinit var myBottomNavbar: MyBottomNavbar
 
+    private var userId: Long = -1
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -82,13 +86,15 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
         // Get the randomly selected word for the location
         val selectedWord = getRandomWord(locationName)
 
+        // Retrieve the user ID from the intent
+        userId = intent.getLongExtra("userId", -1)
+
         // Open LocationDetailActivity to display location details / game
         val intent = Intent(this, LocationDetailActivity::class.java).apply {
             putExtra("LOCATION_NAME", locationName)
             putExtra("LOCATION_DETAILS", locationName?.let { getDetailsForLocation(it) })
             putExtra("SELECTED_WORD", selectedWord)
-            // TODO: Add other relevant data
-        }
+            putExtra("userId", userId)        }
         startActivity(intent)
     }
 

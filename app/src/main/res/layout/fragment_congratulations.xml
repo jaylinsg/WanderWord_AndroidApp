@@ -10,15 +10,16 @@
         android:layout_height="wrap_content"
         android:text="@string/congratulations_message"
         android:textSize="36sp"
+        android:textColor="@color/orange"
         android:gravity="center"/>
 
     <!-- ImageView for the image -->
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/wandergem"
+        android:layout_height="371dp"
         android:layout_gravity="center"
-        android:contentDescription="@string/wandergem_description"/>
+        android:contentDescription="@string/wandergem_description"
+        android:src="@drawable/wandergem" />
 
     <!-- TextView for the congratulations message -->
     <TextView
@@ -26,6 +27,14 @@
         android:layout_height="wrap_content"
         android:text="@string/wandergem_description"
         android:textSize="18sp"
+        android:textColor="@color/orange"
         android:gravity="center"/>
 
+    <Button
+        android:id="@+id/toCollection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/visit_collection"
+        android:textColor="@color/purple_700"
+        android:layout_marginTop="16dp"/>
 </LinearLayout>

@@ -23,17 +23,18 @@
     <string name="user_name">User Name</string>
     <string name="change_password">Change Password</string>
     <string name="other_settings">Other Settings</string>
-    <string name="profile_settings">Wanderer Settings</string>
+    <string name="profile_settings">Wanderer Profile Settings</string>
 
     <!-- For LocationDetailActivity/GameFragment -->
     <string name="location_description_template">Description of %s</string>
-    <string name="location_name_label">Location Name:</string>
+    <string name="location_name_label">Location:</string>
     <string name="location_details_label">Details:</string>
     <string name="check">Check</string>
     <string name="enter_your_guess">Enter your guess</string>
     <string name="check_guess">Check Guess</string>
     <string name="instructions">WanderGem Word Game!\n(Click For Instructions) </string>
-    <string name="congratulations_message">Congratulations You Won!</string>
+    <string name="congratulations_message">Congratulations You Guessed Correctly!</string>
+    <string name="visit_collection">Visit Collection</string>
 
     <!-- For Collection -->
     <string name="collected_rewards">Collected WanderGems</string>

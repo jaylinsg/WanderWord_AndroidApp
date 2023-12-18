@@ -8,6 +8,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/instructions"
+        android:textColor="@color/purple_700"
+        android:textSize="18sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>
 
@@ -19,6 +21,7 @@
         android:layout_below="@id/instructionsButton"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="@color/orange"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>
 
@@ -28,6 +31,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/enter_your_guess"
         android:inputType="text"
+        android:textColor="@color/orange"
         android:imeOptions="actionDone"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/hiddenWordTextView"
@@ -41,6 +45,7 @@
         android:layout_height="wrap_content"
         android:text="@string/check_guess"
         android:layout_below="@id/userInput"
+        android:textColor="@color/purple_700"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>
 
