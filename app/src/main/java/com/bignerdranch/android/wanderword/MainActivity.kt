@@ -137,9 +137,9 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Logged in: $email", Toast.LENGTH_SHORT).show()
 
                 // Start the HomeActivity when the login is successful
-                val intent = Intent(this, SettingsActivity::class.java)
+                val intent = Intent(this, HomeActivity::class.java)
 
-                // Pass the user ID to SettingsActivity
+                // Pass the user ID to HomeActivity
                 intent.putExtra("userId", user.id)
 
                 startActivity(intent)

@@ -25,6 +25,7 @@ import kotlin.random.Random
 class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var googleMap: GoogleMap
+    private lateinit var myBottomNavbar: MyBottomNavbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,26 +35,23 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        // Handle clicks on bottom navbar
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
+        // Initialize MyBottomNavbar
+        myBottomNavbar = findViewById(R.id.myBottomNavbar)
+        // Handle clicks on MyBottomNavbar
+        myBottomNavbar.setNavigationItemSelectedListener { menuItemId ->
+            when (menuItemId) {
                 R.id.action_settings -> {
                     // Handle Settings button click
                     startActivity(Intent(this, SettingsActivity::class.java))
-                    true
                 }
                 R.id.action_friends -> {
                     // Handle Friends button click
                     startActivity(Intent(this, FriendsActivity::class.java))
-                    true
                 }
                 R.id.action_collection -> {
                     // Handle Collection button click
                     startActivity(Intent(this, CollectionActivity::class.java))
-                    true
                 }
-                else -> false
             }
         }
     }

@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- Add UI elements for FriendsActivity here -->
+    <!-- Bottom navigation bar -->
+    <com.bignerdranch.android.wanderword.MyBottomNavbar
+        android:id="@+id/myBottomNavbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.WanderWord"
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_navigation_menu"
+        app:itemIconSize="24dp"
+        android:background="@android:color/holo_purple" />
 
 </LinearLayout>

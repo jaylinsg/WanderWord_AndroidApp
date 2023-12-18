@@ -10,7 +10,8 @@ class SettingsActivity : AppCompatActivity() {
 
     // Initiate database
     private val databaseHelper = DatabaseHelper(this)
-
+    // Navbar
+    private lateinit var myBottomNavbar: MyBottomNavbar
     // Store email
     private lateinit var userEmail: String
     private var userId: Long = -1
@@ -20,25 +21,23 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
+        // Initialize MyBottomNavbar
+        myBottomNavbar = findViewById(R.id.myBottomNavbar)
+        // Handle clicks on MyBottomNavbar
+        myBottomNavbar.setNavigationItemSelectedListener { menuItemId ->
+            when (menuItemId) {
                 R.id.action_home -> {
-                    // Handle Home button click
+                    // Handle Settings button click
                     startActivity(Intent(this, HomeActivity::class.java))
-                    true
                 }
                 R.id.action_friends -> {
                     // Handle Friends button click
                     startActivity(Intent(this, FriendsActivity::class.java))
-                    true
                 }
                 R.id.action_collection -> {
                     // Handle Collection button click
                     startActivity(Intent(this, CollectionActivity::class.java))
-                    true
                 }
-                else -> false
             }
         }
 
