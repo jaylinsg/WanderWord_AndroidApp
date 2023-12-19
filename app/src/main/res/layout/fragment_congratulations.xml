@@ -4,6 +4,14 @@
     android:orientation="vertical"
     android:gravity="center">
 
+    <!-- DEBUGGING PURPOSES -->
+    <TextView
+        android:id="@+id/debugTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/debug_text" />
+
+
     <!-- TextView for the congratulations message -->
     <TextView
         android:layout_width="wrap_content"
@@ -13,16 +21,51 @@
         android:textColor="@color/orange"
         android:gravity="center"/>
 
-    <!-- ImageView for the image -->
+    <!-- ImageView for the rewards -->
     <ImageView
+        android:id="@+id/blueWandergemImageView"
         android:layout_width="wrap_content"
         android:layout_height="371dp"
         android:layout_gravity="center"
+        android:visibility="gone"
         android:contentDescription="@string/wandergem_description"
-        android:src="@drawable/wandergem" />
+        android:src="@drawable/wandergem_blue" />
+    <ImageView
+        android:id="@+id/greenWandergemImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="371dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:contentDescription="@string/wandergem_description"
+        android:src="@drawable/wandergem_green" />
+    <ImageView
+        android:id="@+id/purpleWandergemImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="371dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:contentDescription="@string/wandergem_description"
+        android:src="@drawable/wandergem_purple" />
+    <ImageView
+        android:id="@+id/redWandergemImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="371dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:contentDescription="@string/wandergem_description"
+        android:src="@drawable/wandergem_red" />
+    <ImageView
+        android:id="@+id/yellowWandergemImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="371dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:contentDescription="@string/wandergem_description"
+        android:src="@drawable/wandergem_yellow" />
 
     <!-- TextView for the congratulations message -->
     <TextView
+        android:id="@+id/wandergemDescriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/wandergem_description"

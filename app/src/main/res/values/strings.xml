@@ -13,10 +13,10 @@
     <string name="login">Login</string>
 
     <!-- For Bottom Nav in HomeActivity -->
-    <string name="settings"></string>
-    <string name="friends"></string>
-    <string name="collection"></string>
-    <string name="home"></string>
+    <string name="settings">""</string>
+    <string name="friends">""</string>
+    <string name="collection">""</string>
+    <string name="home">""</string>
 
     <!-- For SettingActivity -->
     <string name="change_profile_picture">Change Profile Picture</string>
@@ -35,10 +35,17 @@
     <string name="instructions">WanderGem Word Game!\n(Click For Instructions) </string>
     <string name="congratulations_message">Congratulations You Guessed Correctly!</string>
     <string name="visit_collection">Visit Collection</string>
+    <string name="wandergem_description_blue">Visit Collection</string>
+    <string name="wandergem_description_purple">Visit Collection</string>
+    <string name="wandergem_description_green">Visit Collection</string>
+    <string name="wandergem_description_red">Visit Collection</string>
+    <string name="wandergem_description_yellow">Visit Collection</string>
+
 
     <!-- For Collection -->
     <string name="collected_rewards">Collected WanderGems</string>
     <string name="not_collected_rewards">Locked WanderGems</string>
     <string name="wandergem_description">"A new WanderGem has been added to your collection! "</string>
+    <string name="debug_text">Debug Text:</string>
 
 </resources>

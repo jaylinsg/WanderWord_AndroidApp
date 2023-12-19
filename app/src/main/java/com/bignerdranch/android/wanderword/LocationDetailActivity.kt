@@ -3,27 +3,26 @@ package com.bignerdranch.android.wanderword
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 
 class LocationDetailActivity : AppCompatActivity() {
 
-    private var userId: Long = -1
-    private var locationName: String = ""
+    var userId: Long = -1
+    var locationName: String = ""
+    val sharedViewModel: GlobalVars by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location_detail)
 
-        // Add the GameFragment dynamically
-        if (savedInstanceState == null) {
-            addGameFragment()
-        }
-
         // Retrieve data from Intent
-        val locationName = intent.getStringExtra("LOCATION_NAME")
+        locationName = intent.getStringExtra("LOCATION_NAME").toString()
+        sharedViewModel.locationName = locationName
         val locationDetails = intent.getStringExtra("LOCATION_DETAILS")
         userId = intent.getLongExtra("userId", -1)
+        sharedViewModel.userId = userId
 
         // Update UI elements with data
         val locationNameTextView: TextView = findViewById(R.id.locationNameTextView)
@@ -36,7 +35,10 @@ class LocationDetailActivity : AppCompatActivity() {
         locationNameTextView.text = locationName
         locationDetailsTextView.text = locationDetails
 
-
+        // Add the GameFragment dynamically
+        if (savedInstanceState == null) {
+            addGameFragment()
+        }
     }
         private fun addGameFragment() {
             val fragmentManager: FragmentManager = supportFragmentManager

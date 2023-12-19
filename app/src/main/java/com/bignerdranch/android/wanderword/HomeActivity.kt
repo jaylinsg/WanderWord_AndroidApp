@@ -6,17 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.location.LocationServices
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.view.View
-import android.widget.TextView
-import android.widget.Toast
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.Marker
 import kotlin.random.Random
@@ -60,6 +57,7 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    @SuppressLint("PotentialBehaviorOverride")
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
 
@@ -200,12 +198,6 @@ private fun getDetailsForLocation(locationName: String): String {
        else -> "Details not available"
    }
 }
-
-
-private fun showToast(message: String) {
-   Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-}
-
 
 companion object {
    private const val LOCATION_PERMISSION_REQUEST_CODE = 1

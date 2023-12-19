@@ -39,6 +39,12 @@ class GameFragment : Fragment() {
         userId = arguments?.getLong("userId", -1) ?: -1
         locationName = arguments?.getString("locationName", "") ?: ""
 
+        // Find the TextView by its ID
+        val debugTextView: TextView = view.findViewById(R.id.debugTextView)
+
+        // Update the text of the TextView with relevant variable values
+        debugTextView.text = locationName
+
         // Retrieve the selected word from arguments
         arguments?.getString("SELECTED_WORD")?.let {
             correctWord = it
@@ -103,6 +109,9 @@ class GameFragment : Fragment() {
     private fun showCongratulationsMessage() {
         // Replace the fragment with a CongratulationsFragment
         val congratulationsFragment = CongratulationsFragment()
+
+        // Set location info
+        congratulationsFragment.setLocationInfo(userId, locationName)
 
         // Use FragmentManager to replace the current fragment with the CongratulationsFragment
         requireActivity().supportFragmentManager.beginTransaction()
@@ -186,6 +195,11 @@ class GameFragment : Fragment() {
 
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    fun setLocationInfo(userId: Long, locationName: String) {
+        this.userId = userId
+        this.locationName = locationName
     }
 
     companion object {
